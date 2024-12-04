@@ -1,0 +1,26 @@
+name: Code Review Workflow
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Run Go Lint
+        run: |
+          go install golang.org/x/lint/golint@latest
+          golint ./src/...
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Run Tests
+        run: go test ./src/... -v
