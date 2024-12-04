@@ -1,0 +1,3 @@
+module 9474-IT311-FINALPROJECT
+
+go 1.23.2
