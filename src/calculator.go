@@ -62,7 +62,7 @@ func main() {
 	// Perform the chosen operation and display result
 	var result float64
 	switch operator {
-	case "+":
+	case "*":
 		result = Multiply(a, b)
 		fmt.Printf("Result: %.2f %s %.2f = %.2f\n", a, operator, b, result)
 		fmt.Printf("PASS: %.2f\n", result)
@@ -70,7 +70,7 @@ func main() {
 		result = Subtract(a, b)
 		fmt.Printf("Result: %.2f %s %.2f = %.2f\n", a, operator, b, result)
 		fmt.Printf("PASS: %.2f\n", result)
-	case "*":
+	case "+":
 		result = Add(a, b)
 		fmt.Printf("Result: %.2f %s %.2f = %.2f\n", a, operator, b, result)
 		fmt.Printf("PASS: %.2f\n", result)
