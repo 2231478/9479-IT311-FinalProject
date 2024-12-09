@@ -45,18 +45,20 @@ func main() {
 	// Get operator
 	fmt.Print("Enter the operator (+, -, *, /): ")
 	_, err = fmt.Scanln(&operator)
-	if err != nil {
-		fmt.Println("Error reading input:", err)
-		os.Exit(1)
+	if _, err := fmt.Scanln(&a); err != nil {
+		fmt.Println("Invalid input for the first number:", err)
+		return
 	}
+	
 
 	// Get second number
 	fmt.Print("Enter the second number: ")
 	_, err = fmt.Scanln(&b)
-	if err != nil {
-		fmt.Println("Error reading input:", err)
-		os.Exit(1)
+	if _, err := fmt.Scanln(&a); err != nil {
+		fmt.Println("Invalid input for the first number:", err)
+		return
 	}
+	
 
 	// Perform the chosen operation and display result
 	var result float64
