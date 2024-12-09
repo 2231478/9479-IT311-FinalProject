@@ -63,25 +63,28 @@ func main() {
 	switch operator {
 	case "*":
 		result = Multiply(a, b)
-		fmt.Printf("Result: %.2f %s %.2f = %.2f\n", a, operator, b, result)
-		fmt.Printf("PASS: %.2f\n", result)
+		
 	case "-":
 		result = Subtract(a, b)
-		fmt.Printf("Result: %.2f %s %.2f = %.2f\n", a, operator, b, result)
-		fmt.Printf("PASS: %.2f\n", result)
+
 	case "+":
 		result = Add(a, b)
-		fmt.Printf("Result: %.2f %s %.2f = %.2f\n", a, operator, b, result)
-		fmt.Printf("PASS: %.2f\n", result)
+
 	case "/":
 		result, err = Divide(a, b)
-		if err != nil {
-			fmt.Println("Error:", err)
-		} else {
-			fmt.Printf("Result: %.2f %s %.2f = %.2f\n", a, operator, b, result)
-			fmt.Printf("PASS: %.2f\n", result)
-		}
+		
 	default:
-		fmt.Println("Invalid operator!")
+		fmt.Println("Error: Invalid operator. Use one of +, -, *, /.")
+		return
 	}
+
+	// Check for division error
+	if err != nil {
+		fmt.Println("Error:", err)
+		return
+	}
+
+	// Print the result
+	printResult(a, operator, b, result)
+
 }
