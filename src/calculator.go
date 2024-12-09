@@ -37,10 +37,9 @@ func main() {
 
 	// Get first number
 	fmt.Print("Enter the first number: ")
-	_, err := fmt.Scanln(&a)
-	if err != nil {
-		fmt.Println("Error reading input:", err)
-		os.Exit(1)
+	if _, err := fmt.Scanln(&a); err != nil {
+		fmt.Println("Invalid input for the first number:", err)
+		return
 	}
 
 	// Get operator
