@@ -3,8 +3,6 @@ package main
 import (
 	"errors"
 	"fmt"
-	"os"
-	// "strconv"
 )
 
 // Addition
@@ -30,6 +28,11 @@ func Divide(a, b float64) (float64, error) {
 	return a / b, nil
 }
 
+// printResult prints the result of the calculation
+func printResult(a float64, operator string, b float64, result float64) {
+	fmt.Printf("Result: %.2f %s %.2f = %.2f\n", a, operator, b, result)
+}
+
 func main() {
 	// Take user input for two numbers
 	var a, b float64
@@ -38,43 +41,36 @@ func main() {
 	// Get first number
 	fmt.Print("Enter the first number: ")
 	if _, err := fmt.Scanln(&a); err != nil {
-		fmt.Println("Invalid input for the first number:", err)
+		fmt.Println("Error: Invalid input for the first number.")
 		return
 	}
 
 	// Get operator
 	fmt.Print("Enter the operator (+, -, *, /): ")
-	_, err = fmt.Scanln(&operator)
-	if _, err := fmt.Scanln(&a); err != nil {
-		fmt.Println("Invalid input for the first number:", err)
+	if _, err := fmt.Scanln(&operator); err != nil {
+		fmt.Println("Error: Invalid input for the operator.")
 		return
 	}
-	
 
 	// Get second number
 	fmt.Print("Enter the second number: ")
-	_, err = fmt.Scanln(&b)
-	if _, err := fmt.Scanln(&a); err != nil {
-		fmt.Println("Invalid input for the first number:", err)
+	if _, err := fmt.Scanln(&b); err != nil {
+		fmt.Println("Error: Invalid input for the second number.")
 		return
 	}
-	
 
 	// Perform the chosen operation and display result
 	var result float64
+	var err error
 	switch operator {
-	case "*":
-		result = Multiply(a, b)
-		
-	case "-":
-		result = Subtract(a, b)
-
 	case "+":
 		result = Add(a, b)
-
+	case "-":
+		result = Subtract(a, b)
+	case "*":
+		result = Multiply(a, b)
 	case "/":
 		result, err = Divide(a, b)
-		
 	default:
 		fmt.Println("Error: Invalid operator. Use one of +, -, *, /.")
 		return
@@ -88,5 +84,4 @@ func main() {
 
 	// Print the result
 	printResult(a, operator, b, result)
-
 }
