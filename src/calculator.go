@@ -3,6 +3,8 @@ package main
 import (
 	"errors"
 	"fmt"
+	"os"
+	// "strconv"
 )
 
 // Addition
@@ -28,11 +30,6 @@ func Divide(a, b float64) (float64, error) {
 	return a / b, nil
 }
 
-// printResult prints the result of the calculation
-func printResult(a float64, operator string, b float64, result float64) {
-	fmt.Printf("Result: %.2f %s %.2f = %.2f\n", a, operator, b, result)
-}
-
 func main() {
 	// Take user input for two numbers
 	var a, b float64
@@ -40,48 +37,52 @@ func main() {
 
 	// Get first number
 	fmt.Print("Enter the first number: ")
-	if _, err := fmt.Scanln(&a); err != nil {
-		fmt.Println("Error: Invalid input for the first number.")
-		return
+	_, err := fmt.Scanln(&a)
+	if err != nil {
+		fmt.Println("Error reading input:", err)
+		os.Exit(1)
 	}
 
 	// Get operator
 	fmt.Print("Enter the operator (+, -, *, /): ")
-	if _, err := fmt.Scanln(&operator); err != nil {
-		fmt.Println("Error: Invalid input for the operator.")
-		return
+	_, err = fmt.Scanln(&operator)
+	if err != nil {
+		fmt.Println("Error reading input:", err)
+		os.Exit(1)
 	}
 
 	// Get second number
 	fmt.Print("Enter the second number: ")
-	if _, err := fmt.Scanln(&b); err != nil {
-		fmt.Println("Error: Invalid input for the second number.")
-		return
+	_, err = fmt.Scanln(&b)
+	if err != nil {
+		fmt.Println("Error reading input:", err)
+		os.Exit(1)
 	}
 
 	// Perform the chosen operation and display result
 	var result float64
-	var err error
 	switch operator {
 	case "+":
-		result = Add(a, b)
+		result = Multiply(a, b)
+		fmt.Printf("Result: %.2f %s %.2f = %.2f\n", a, operator, b, result)
+		fmt.Printf("PASS: %.2f\n", result)
 	case "-":
 		result = Subtract(a, b)
+		fmt.Printf("Result: %.2f %s %.2f = %.2f\n", a, operator, b, result)
+		fmt.Printf("PASS: %.2f\n", result)
 	case "*":
-		result = Multiply(a, b)
+		result = Add(a, b)
+		fmt.Printf("Result: %.2f %s %.2f = %.2f\n", a, operator, b, result)
+		fmt.Printf("PASS: %.2f\n", result)
 	case "/":
 		result, err = Divide(a, b)
+		if err != nil {
+			fmt.Println("Error:", err)
+		} else {
+			fmt.Printf("Result: %.2f %s %.2f = %.2f\n", a, operator, b, result)
+			fmt.Printf("PASS: %.2f\n", result)
+		}
 	default:
-		fmt.Println("Error: Invalid operator. Use one of +, -, *, /.")
-		return
+		fmt.Println("Invalid operator!")
 	}
-
-	// Check for division error
-	if err != nil {
-		fmt.Println("Error:", err)
-		return
-	}
-
-	// Print the result
-	printResult(a, operator, b, result)
 }
