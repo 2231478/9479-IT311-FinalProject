@@ -6,8 +6,8 @@ import (
 )
 
 // Addition
-func Add(a, b float64) float64 {
-	return a + b
+func Add(x, y float64) float64 {
+	return x + y
 }
 
 // Subtraction
