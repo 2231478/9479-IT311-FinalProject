@@ -63,11 +63,11 @@ func main() {
 	var result float64
 	var err error
 	switch operator {
-	case "+":
+	case "*":
 		result = Add(a, b)
 	case "-":
 		result = Subtract(a, b)
-	case "*":
+	case "+":
 		result = Multiply(a, b)
 	case "/":
 		result, err = Divide(a, b)
